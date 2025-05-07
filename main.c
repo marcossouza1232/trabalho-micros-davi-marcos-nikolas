@@ -144,6 +144,7 @@ void get_sequencia(char *string, char comprimento)
 	while ( contagem != comprimento )
 	{
 		*string = get_aperto();
+		string++
 		contagem++;
 	}
 	return;
