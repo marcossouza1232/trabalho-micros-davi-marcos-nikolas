@@ -99,7 +99,7 @@ void delay_ms(int ms)
 	// n deve ser no máximo 255
 	// logo p deve ser no mínimo 63, logo usaremos prescaler de 64.
 	// n = 250.
-	for ( char i = 0; i < 250*64; i++ ); 
+	for ( char i = 0; i < ms*250*64; i++ ); 
 	return;
 }
 
