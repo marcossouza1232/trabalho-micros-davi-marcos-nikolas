@@ -1,17 +1,24 @@
 #include <avr/io.h>
 
+
+// funcoes teclado
 char getchar_alfanumerico(void);
-
 void delay_ms(int);
-
 char getchar_debounce(void);
-
 char get_aperto(void);
-
 void get_sequencia(char *, char);
+
+// funcoes computador.
+
 
 int main(void)
 {
+	// comecamos lendo o codigo do aluno.
+	char codigo_aluno[6];
+	get_sequencia(codigo_aluno, 6);
+
+	// vamos configurar o usart para transmitir o codigo para o computador.
+	
 	return 0;
 }
 
@@ -99,7 +106,7 @@ void delay_ms(int ms)
 	// n deve ser no máximo 255
 	// logo p deve ser no mínimo 63, logo usaremos prescaler de 64.
 	// n = 250.
-	for ( char i = 0; i < ms*250*64; i++ ); 
+	for ( char i = 0; i < 250*64; i++ ); // provisorio.
 	return;
 }
 
@@ -130,7 +137,7 @@ char get_aperto()
 {
 	// a funcao de aperto existe, pois nao interessa para nos que o usuario fique com um botao apertado, e nao solte mais e a gente fique lendo como se ele estivesse clicando na mesma tecla varias vezes, portanto é necessario que ele aperte é solte.
 	char caractere;
-	caractere = getchar_debounce();
+	while ( ( caractere = getchar_debounce()) == 0 ); // pega o caractere ate ele ser valido.
 	while ( getchar_debounce() )
 	{
 		// espero o getchar retorna 0, que quer dizer que nenhuma tecla está sendo apertada
@@ -140,12 +147,9 @@ char get_aperto()
 
 void get_sequencia(char *string, char comprimento)
 {
-	char contagem = 0;
-	while ( contagem != comprimento )
+	for ( char contagem = 0; contagem < comprimento; contagem++ )
 	{
-		*string = get_aperto();
-		string++
-		contagem++;
+		*(string++) = get_aperto();
 	}
 	return;
 }
