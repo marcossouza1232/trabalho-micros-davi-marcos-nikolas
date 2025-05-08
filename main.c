@@ -68,16 +68,16 @@ char getchar_alfanumerico()
 	coluna = (~PIND) & (0x70);
 	switch ( coluna )
 	{
-		case 0:
+		case 0x00:
 			coluna = 0; // nada foi apertado.
 			break;
-		case 1:
+		case 0x10:
 			coluna = 1;
 			break;
-		case 2:
+		case 0x20:
 			coluna = 2;
 			break;
-		case 4:
+		case 0x40:
 			coluna = 3;
 			break;
 		default:
